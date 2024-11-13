@@ -30,8 +30,8 @@ jobs:
         run: |
           npm install
           npm run build
-          mv .next/static .next/standalone/.next/static
-          mv public .next/standalone/public
+          mv .next/static .next/standalone
+          mv ./public .next/standalone
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -46,5 +46,5 @@ jobs:
         with:
           app-name: 'genai-insiders'
           slot-name: 'Production'
-          package: .next
+          package: .next/standalone
           
