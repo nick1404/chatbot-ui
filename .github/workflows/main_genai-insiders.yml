@@ -67,5 +67,5 @@ jobs:
         with:
           app-name: 'genai-insiders'
           slot-name: 'Production'
-          package: .
+          package: .next
           
