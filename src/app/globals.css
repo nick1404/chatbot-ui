@@ -19,3 +19,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.loading {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
