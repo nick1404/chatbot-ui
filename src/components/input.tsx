@@ -25,7 +25,7 @@ export default function Input({ onSubmit, disabled, one, two, three }: InputProp
 
   return (
     <>
-    <div className='flex flex-row h-5 mb-1'>
+    <div className='flex flex-row space-x-2 h-8 mb-1'>
       <div onClick={() => handleBubbleClick(one)} className="basis-1/3 border rounded-md text-xs">{one}</div>
       <div onClick={() => handleBubbleClick(two)} className="basis-1/3 border rounded-md text-xs">{two}</div>
       <div onClick={() => handleBubbleClick(three)} className="basis-1/3 border rounded-md text-xs">{three}</div>
