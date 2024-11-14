@@ -3,10 +3,17 @@ import { useState } from 'react';
 interface InputProps {
   onSubmit: (message: string) => void;
   disabled: boolean;
+  one: string;
+  two: string;
+  three: string;
 }
 
-export default function Input({ onSubmit, disabled }: InputProps) {
+export default function Input({ onSubmit, disabled, one, two, three }: InputProps) {
   const [inputValue, setInputValue] = useState('');
+
+  const handleBubbleClick = (question: string) => {
+    setInputValue(question);
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,9 +26,9 @@ export default function Input({ onSubmit, disabled }: InputProps) {
   return (
     <>
     <div className='flex flex-row h-5 mb-1'>
-      <div className="basis-1/3 border rounded-md"></div>
-      <div className="basis-1/3 border rounded-md"></div>
-      <div className="basis-1/3 border rounded-md"></div>
+      <div onClick={() => handleBubbleClick(one)} className="basis-1/3 border rounded-md text-xs">{one}</div>
+      <div onClick={() => handleBubbleClick(two)} className="basis-1/3 border rounded-md text-xs">{two}</div>
+      <div onClick={() => handleBubbleClick(three)} className="basis-1/3 border rounded-md text-xs">{three}</div>
     </div>
     <div className="flex space-x-2 items-center mt-auto">
       <form className="flex items-center justify-center w-full space-x-2" onSubmit={handleSubmit}>

@@ -58,6 +58,8 @@ export default function Chatbox() {
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState<{ role: string, content: string }[]>([]);
   const [loading, setLoading] = useState(false);
+  const [questions, setQuestions] = useState(["", "", ""]);
+  const [showPompt, setShowPompt] = useState(false);
 
   const handleNewMessage = async (message: string) => {
     setMessages([...messages, { role: 'user', content: message }]);
@@ -106,7 +108,34 @@ export default function Chatbox() {
       }
 
       const data = await response.json();
-      const assistantMessage = data.choices[0].message.content;
+      let assistantMessage = data.choices[0].message.content;
+
+      // Check if the response contains a JSON object at the end
+      const jsonStartIndex = assistantMessage.lastIndexOf("json");
+      if (jsonStartIndex !== -1) {
+          const jsonEndIndex = assistantMessage.lastIndexOf("}");
+          if (jsonEndIndex !== -1) {
+              const jsonString = assistantMessage.substring(jsonStartIndex + 5, jsonEndIndex + 1).trim();
+              console.log(jsonString);
+
+              const jsonObject = JSON.parse(jsonString);
+              console.log("Object:" + jsonObject);
+
+              const [option1, option2, option3] = jsonObject.options;
+
+              // Remove the JSON part from the assistant message
+              assistantMessage = assistantMessage.substring(0, jsonStartIndex - 3).trim();
+
+              // one = option1;
+              // two = option2;
+              // three = option3;
+
+              setQuestions([option1, option2, option3]);
+              // You can now use option1, option2, and option3 as needed
+              //console.log(option1, option2, option3);
+          }
+      }
+
       setMessages([...messages, { role: 'user', content: message }, { role: 'assistant', content: assistantMessage }]);
     } catch (error) {
       console.error('Failed to make the request. Error:', error);
@@ -143,7 +172,7 @@ export default function Chatbox() {
             </div>
 
             {/* Input */}
-            <Input onSubmit={handleNewMessage} disabled={loading} />
+            <Input one={questions[0]} two={questions[1]} three={questions[2]} onSubmit={handleNewMessage} disabled={loading} />
 
           </div>
         </div>

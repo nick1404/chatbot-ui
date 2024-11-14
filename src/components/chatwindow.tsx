@@ -60,7 +60,8 @@ let three = "";
 export default function Chatwindow() {
 
     const [messages, setMessages] = useState<{ role: string, content: string }[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);      
+    const [questions, setQuestions] = useState(["", "", ""]);
 
     const handleNewMessage = async (message: string) => {
     setMessages([...messages, { role: 'user', content: message }]);
@@ -127,10 +128,11 @@ export default function Chatwindow() {
               // Remove the JSON part from the assistant message
               assistantMessage = assistantMessage.substring(0, jsonStartIndex - 3).trim();
 
-              one = option1;
-              two = option2;
-              three = option3;
+              // one = option1;
+              // two = option2;
+              // three = option3;
 
+              setQuestions([option1, option2, option3]);
               // You can now use option1, option2, and option3 as needed
               //console.log(option1, option2, option3);
           }
@@ -168,7 +170,7 @@ export default function Chatwindow() {
                 </div>
 
                 {/* Input */}
-                <Input onSubmit={handleNewMessage} disabled={loading} />
+                <Input one={questions[0]} two={questions[1]} three={questions[2]} onSubmit={handleNewMessage} disabled={loading} />
 
             </div>
         </div>
