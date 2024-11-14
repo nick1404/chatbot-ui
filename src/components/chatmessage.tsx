@@ -13,7 +13,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             
             <div>
                 <div>Babs</div>
-                <p className="text-sm">{message}</p>
+                <p className="text-base">{message}</p>
             </div>
             
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "../components/header"
+import BurgerMenu from "@/components/burgermenu";
 
 export const metadata: Metadata = {
   title: "Chatbot!",
@@ -14,8 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-      <Header />
+      <body style={{height: '100vh', width: '100vw'}} className="h-screen w-screen relative">
+      {/* <Header /> */}
+        <BurgerMenu />
         {children}
       </body>
     </html>

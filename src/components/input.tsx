@@ -17,6 +17,12 @@ export default function Input({ onSubmit, disabled }: InputProps) {
   };
 
   return (
+    <>
+    <div className='flex flex-row h-5 mb-1'>
+      <div className="basis-1/3 border rounded-md"></div>
+      <div className="basis-1/3 border rounded-md"></div>
+      <div className="basis-1/3 border rounded-md"></div>
+    </div>
     <div className="flex space-x-2 items-center mt-auto">
       <form className="flex items-center justify-center w-full space-x-2" onSubmit={handleSubmit}>
         <input
@@ -32,5 +38,6 @@ export default function Input({ onSubmit, disabled }: InputProps) {
         </button>
       </form>
     </div>
+    </>
   );
 }
